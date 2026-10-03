@@ -15,7 +15,6 @@ await build({
   external: [
     "react",
     "react/jsx-runtime",
-    "@deepseek-ai/dsh-client-runtime/client",
   ],
   define: {
     "process.env.NODE_ENV": '"production"',

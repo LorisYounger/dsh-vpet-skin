@@ -2,6 +2,8 @@
 
 ## 安装
 
+Web 和官方 Desktop 使用独立的 profile。下面的 `dsh plugin --profile web` 命令只适用于 Web；官方 Desktop 请在桌面应用的「设置 → 皮肤市场」或插件管理器中安装同名 npm 包，安装后完全退出并重新打开 Desktop。不要把 Web profile 的安装结果当成 Desktop 已安装。
+
 - #### 方法一， 提示词安装：
 <details>
    <summary>&emsp;&emsp;点击展开提示词</summary>
@@ -78,10 +80,10 @@ dsh --profile web --dump-config | grep -B1 -A2 liang-intensity
 
 ### 方式二：从 GitHub Release tarball 安装
 
-从本仓库 [Releases](https://github.com/kingOfSoySauce/dsh-liang-skin/releases) 页面下载 `dsh-client-liang-intensity-skin-0.1.7.tgz`（包内已包含构建好的 `lib/client.js`，安装时不需要执行任何 prepare 脚本），然后：
+从本仓库 [Releases](https://github.com/kingOfSoySauce/dsh-liang-skin/releases) 页面下载 `dsh-client-liang-intensity-skin-0.1.8.tgz`（包内已包含构建好的 `lib/client.js`，安装时不需要执行任何 prepare 脚本），然后：
 
 ```sh
-dsh plugin --profile web add ./dsh-client-liang-intensity-skin-0.1.7.tgz
+dsh plugin --profile web add ./dsh-client-liang-intensity-skin-0.1.8.tgz
 ```
 
 
