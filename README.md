@@ -2,7 +2,7 @@
 
 ## 安装
 
-Web 和官方 Desktop 使用独立的 profile。下面的 `dsh plugin --profile web` 命令只适用于 Web；官方 Desktop 请在桌面应用的「设置 → 皮肤市场」或插件管理器中安装同名 npm 包，安装后完全退出并重新打开 Desktop。不要把 Web profile 的安装结果当成 Desktop 已安装。
+Web 和官方 Desktop 使用独立的 profile。下面的 `dsh plugin --profile web` 命令只适用于 Web；官方 Desktop 请在桌面应用的「设置 → 皮肤市场」或插件管理器中安装 npm 包 `@leon___/dsh-client-liang-intensity-skin`，安装后完全退出并重新打开 Desktop。不要把 Web profile 的安装结果当成 Desktop 已安装。
 
 - #### 方法一， 提示词安装：
 <details>
@@ -14,13 +14,13 @@ Web 和官方 Desktop 使用独立的 profile。下面的 `dsh plugin --profile 
 请把“滑动变祖”皮肤安装到 DSH 的 web profile。必须先检查冲突，确认可以继续后再安装。
 
 1. 安装前只读检查 web profile 的 package.json（dependencies 与 dsh.profile.bundles）、profile 的 cordis.patch.yml 和 $DSH_HOME/cordis.patch.yml（如有）。
-2. 从当前启用的 bundles 中识别其他皮肤、主题或外观插件：排除 @deepseek-ai/dsh-base、@deepseek-ai/dsh-web-app、dsh-skin-market 和本次目标 dsh-client-liang-intensity-skin；读取候选 package.json 的名称、描述、dsh.client/dsh.bundle 声明，必要时再读 README。
+2. 从当前启用的 bundles 中识别其他皮肤、主题或外观插件：排除 @deepseek-ai/dsh-base、@deepseek-ai/dsh-web-app、dsh-skin-market 和本次目标 @leon___/dsh-client-liang-intensity-skin；读取候选 package.json 的名称、描述、dsh.client/dsh.bundle 声明，必要时再读 README。
 3. 如果发现其他已启用的皮肤插件，列出它们并停在安装前，提醒我先停用；未经我确认不得修改任何 profile 文件，也不得执行安装。
 4. 如果没有冲突，明确说“未检测到其他已启用的皮肤插件”，然后执行：
 
 dsh plugin --profile web add 'github:kingOfSoySauce/dsh-liang-skin'
 
-5. 安装后读取 web profile 的 package.json，确认 dependencies 和 dsh.profile.bundles 中都有 dsh-client-liang-intensity-skin；再检查目标 package.json 的 dsh.client/dsh.bundle 声明和 liang-intensity-skin loader 注册项。任一缺失都要报告安装或注册失败。
+5. 安装后读取 web profile 的 package.json，确认 dependencies 和 dsh.profile.bundles 中都有 @leon___/dsh-client-liang-intensity-skin；再检查目标 package.json 的 dsh.client/dsh.bundle 声明和 liang-intensity-skin loader 注册项。任一缺失都要报告安装或注册失败。
 6. 告诉我如何重启 DSH Web。不要替我安装、停用或卸载其他皮肤。
 ```
 
@@ -80,10 +80,10 @@ dsh --profile web --dump-config | grep -B1 -A2 liang-intensity
 
 ### 方式二：从 GitHub Release tarball 安装
 
-从本仓库 [Releases](https://github.com/kingOfSoySauce/dsh-liang-skin/releases) 页面下载 `dsh-client-liang-intensity-skin-0.1.8.tgz`（包内已包含构建好的 `lib/client.js`，安装时不需要执行任何 prepare 脚本），然后：
+从本仓库 [Releases](https://github.com/kingOfSoySauce/dsh-liang-skin/releases) 页面下载 `dsh-client-liang-intensity-skin-0.1.9.tgz`（包内已包含构建好的 `lib/client.js`，安装时不需要执行任何 prepare 脚本），然后：
 
 ```sh
-dsh plugin --profile web add ./dsh-client-liang-intensity-skin-0.1.8.tgz
+dsh plugin --profile web add ./dsh-client-liang-intensity-skin-0.1.9.tgz
 ```
 
 

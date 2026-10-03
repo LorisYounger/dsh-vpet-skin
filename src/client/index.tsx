@@ -101,7 +101,7 @@ interface ModelDirectoryState {
 interface ModelDirectory {
   store: SnapshotStore<ModelDirectoryState>;
   load(): Promise<unknown>;
-  select(selection: ModelSelection): Promise<void>;
+  select(selection: ModelSelection): Promise<{ ok: boolean }>;
 }
 
 interface SliderProps {
@@ -831,7 +831,7 @@ export function apply(ctx: ClientContext) {
           if (available) void directory.load().catch(() => undefined);
         },
         select: (selection: ModelSelection) => available
-          ? directory.select(selection).then(() => true, () => false)
+          ? directory.select(selection).then((result) => result.ok, () => false)
           : Promise.resolve(false),
       };
     },
