@@ -46,3 +46,9 @@ dsh plugin --profile web add .
 角色图片归 [虚拟桌宠模拟器制作组(VPet)](https://github.com/LorisYounger/VPet) 所有，画师：`OOZ` **二创允许**.
 
 插件基于 [dsh-liang-skin](https://github.com/kingOfSoySauce/dsh-liang-skin) 修改。
+
+## 许可证
+
+插件代码采用 [MIT 许可证](LICENSE)，允许使用、修改、二创、分发和商用，不要求二创作品开源；分发时保留版权声明和许可文本即可。
+
+`assets/vpet/` 中的角色图片不适用上述代码许可证，版权与授权仍按“素材与致谢”中的原作者说明执行。

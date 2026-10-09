@@ -1,6 +1,7 @@
 {
   "name": "dsh-client-vpet-skin",
   "version": "0.1.13",
+  "license": "MIT",
   "description": "VPet：five illustrated forms with an adaptive reasoning slider for DeepSeek Harness",
   "repository": {
     "type": "git",
