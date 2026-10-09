@@ -16,12 +16,12 @@
 ## 安装
 
 ```sh
-dsh plugin --profile web add github:LorisYounger/dsh-vpet-skin
+dsh plugin --profile web add dsh-client-vpet-skin@latest
 ```
 
-安装后重启 DSH Web。建议停用其他皮肤插件，避免样式冲突。
+安装后重启 DSH Web
 
-Desktop 使用独立的插件配置，请通过 Desktop 的插件管理入口安装，并重新启动应用。
+**Desktop 版本** 请在添加插件中写 `dsh-client-vpet-skin@latest`
 
 ## 使用
 
