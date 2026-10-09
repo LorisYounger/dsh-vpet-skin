@@ -1,39 +1,12 @@
 import { createReadStream, statSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { parseSingleRange } from "./range.js";
+import { PORTRAITS } from "./portraits.js";
 
 export { parseSingleRange } from "./range.js";
 
-export const PACKAGE_ID = "dsh-client-liang-intensity-skin";
-export const SETTINGS_NAMESPACE = "liang-intensity-skin";
+export const PACKAGE_ID = "dsh-client-vpet-skin";
 export const ASSET_PREFIX = `/plugins/${PACKAGE_ID}/assets/`;
-
-const ASSET_SPECS = [
-  ["portrait-source-v2/stage-00.webp", "image/webp"],
-  ["portrait-source-v2/level-01.webp", "image/webp"],
-  ["portrait-source-v2/level-03.webp", "image/webp"],
-  ["portrait-source-v2/level-04.webp", "image/webp"],
-  ["portrait-source-v2/stage-06.webp", "image/webp"],
-  ["portrait-source-v2/level-07.webp", "image/webp"],
-  ["portrait-source-v2/level-09.webp", "image/webp"],
-  ["portrait-source-v2/level-10.webp", "image/webp"],
-  ["portrait-source-v2/stage-12.webp", "image/webp"],
-  ["portrait-source-v2/level-13.webp", "image/webp"],
-  ["portrait-source-v2/level-14.webp", "image/webp"],
-  ["portrait-source-v2/bridge-15.webp", "image/webp"],
-  ["portrait-source-v2/level-16.webp", "image/webp"],
-  ["portrait-source-v2/level-17.webp", "image/webp"],
-  ["portrait-source-v2/stage-18.webp", "image/webp"],
-  ["portrait-source-v2/level-19.webp", "image/webp"],
-  ["portrait-source-v2/level-21.webp", "image/webp"],
-  ["portrait-source-v2/level-22.webp", "image/webp"],
-  ["portrait-source-v2/stage-24.webp", "image/webp"],
-  ["portrait-source-v2/level-25.webp", "image/webp"],
-  ["portrait-source-v2/bridge-27.webp", "image/webp"],
-  ["portrait-source-v2/level-28.webp", "image/webp"],
-  ["portrait-source-v2/level-29.webp", "image/webp"],
-  ["portrait-source-v2/stage-30.webp", "image/webp"],
-];
 
 function send(res, status, headers = {}) {
   res.writeHead(status, {
@@ -44,24 +17,23 @@ function send(res, status, headers = {}) {
 }
 
 function buildAssets() {
-  const assetDirectory = fileURLToPath(new URL("../assets/", import.meta.url));
   const assets = new Map();
-  for (const [name, type] of ASSET_SPECS) {
-    const path = fileURLToPath(new URL(`../assets/${name}`, import.meta.url));
+  for (const { file } of PORTRAITS) {
+    const path = fileURLToPath(new URL(`../assets/${file}`, import.meta.url));
     try {
       const info = statSync(path);
       if (!info.isFile()) continue;
-      assets.set(`${ASSET_PREFIX}${name}`, {
+      assets.set(`${ASSET_PREFIX}${file}`, {
         path,
-        type,
+        type: "image/png",
         size: info.size,
         etag: `W/\"${info.size.toString(16)}-${Math.trunc(info.mtimeMs).toString(16)}\"`,
       });
     } catch {
-      // A missing optional medium is handled by the browser fallback chain.
+      // Missing portraits are handled by the client's image error fallback.
     }
   }
-  return { assetDirectory, assets };
+  return assets;
 }
 
 function createAssetHandler(assets, activeStreams) {
@@ -141,7 +113,7 @@ function createAssetHandler(assets, activeStreams) {
 export const inject = ["webServer"];
 
 export function apply(ctx) {
-  const { assets } = buildAssets();
+  const assets = buildAssets();
   const activeStreams = new Set();
   ctx.effect(() => {
     const handler = createAssetHandler(assets, activeStreams);
@@ -155,5 +127,5 @@ export function apply(ctx) {
       for (const stream of activeStreams) stream.destroy();
       activeStreams.clear();
     };
-  }, "liang-intensity-skin: static media route");
+  }, "vpet-skin: static media route");
 }

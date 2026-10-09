@@ -1,6 +1,6 @@
 import { build } from "esbuild";
 
-const id = "@leon___/dsh-client-liang-intensity-skin";
+const id = "dsh-client-vpet-skin";
 
 await build({
   entryPoints: ["src/client/index.tsx"],
